@@ -32,7 +32,6 @@ namespace DesignPatterns.Strategy
                 resultStr += i + ",";
             }
             Console.WriteLine(resultStr);
-            Console.ReadLine();
         }
     }
 }
