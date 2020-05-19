@@ -7,9 +7,7 @@ namespace DesignPatterns
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Strategy Starts");
-
-            
+            Console.WriteLine("Strategy Starts");            
             Context context = new Context();
             context.SetStrategy(new ConcreteStrategyB()); // context.SetStrategy(new ConcreteStrategyA()); for Strategy A
             context.DoSomeBusinessLogic();
