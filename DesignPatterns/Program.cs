@@ -1,6 +1,7 @@
 ﻿using Observer = DesignPatterns.Observer;
 using Startegy = DesignPatterns.Strategy;
 using System;
+using DesignPatterns.ChainOfResponsibility;
 
 namespace DesignPatterns
 {
@@ -9,7 +10,8 @@ namespace DesignPatterns
         static void Main(string[] args)
         {
             // Strategy();
-            Observer();
+            // Observer();
+            ChainOfResponsibility();
             Console.ReadLine();
         }
 
@@ -38,6 +40,24 @@ namespace DesignPatterns
             context.SetStrategy(new Startegy.ConcreteStrategyB()); // context.SetStrategy(new Startegy.ConcreteStrategyA()); for Strategy A
             context.DoSomeBusinessLogic();
             Console.WriteLine("Strategy Ends");
+        }
+
+        private static void ChainOfResponsibility()
+        {
+            var monkey = new MonkeyHandler();
+            var squirrel = new SquirrelHandler();
+            var dog = new DogHandler();
+
+            monkey.SetNext(squirrel).SetNext(dog);
+
+            // The client should be able to send a request to any handler, not
+            // just the first one in the chain.
+            Console.WriteLine("Chain: Monkey > Squirrel > Dog\n");
+            Client.ClientCode(monkey);
+            Console.WriteLine();
+
+            Console.WriteLine("Subchain: Squirrel > Dog\n");
+            Client.ClientCode(squirrel);
         }
     }
 }
