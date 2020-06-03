@@ -2,6 +2,7 @@
 using Startegy = DesignPatterns.Strategy;
 using System;
 using DesignPatterns.ChainOfResponsibility;
+using DesignPatterns.Command;
 
 namespace DesignPatterns
 {
@@ -11,10 +12,12 @@ namespace DesignPatterns
         {
             // Strategy();
             // Observer();
-            ChainOfResponsibility();
-            Console.ReadLine();
+            // ChainOfResponsibility();
+            Command();
+           // Console.ReadLine();
         }
 
+        
         private static void Observer()
         {
             // The client code.
@@ -59,5 +62,15 @@ namespace DesignPatterns
             Console.WriteLine("Subchain: Squirrel > Dog\n");
             Client.ClientCode(squirrel);
         }
+        private static void Command()
+        {
+            Invoker invoker = new Invoker();
+            invoker.SetOnStart(new SimpleCommand("Say Hi!"));
+            Receiver receiver = new Receiver();
+            invoker.SetOnFinish(new ComplexCommand(receiver, "Send email", "Save report"));
+
+            invoker.DoSomethingImportant();
+        }
+
     }
 }
