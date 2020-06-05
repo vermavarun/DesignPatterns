@@ -5,6 +5,7 @@ using DesignPatterns.ChainOfResponsibility;
 using DesignPatterns.Command;
 using DesignPatterns.Iterator;
 using DesignPatterns.Mediator;
+using DesignPatterns.Memento;
 
 namespace DesignPatterns
 {
@@ -17,8 +18,34 @@ namespace DesignPatterns
             // ChainOfResponsibility();
             // Command();
             // Iterator();
-             Mediator();
+            // Mediator();
+            Memento();
            // Console.ReadLine();
+        }
+
+        private static void Memento()
+        {
+            Originator originator = new Originator("Super-duper-super-puper-super.");
+            Caretaker caretaker = new Caretaker(originator);
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            caretaker.Backup();
+            originator.DoSomething();
+
+            Console.WriteLine();
+            caretaker.ShowHistory();
+
+            Console.WriteLine("\nClient: Now, let's rollback!\n");
+            caretaker.Undo();
+
+            Console.WriteLine("\n\nClient: Once more!\n");
+            caretaker.Undo();
+
         }
 
         private static void Mediator()
