@@ -1,12 +1,15 @@
 ﻿using Observer = DesignPatterns.Observer;
 using Startegy = DesignPatterns.Strategy;
 using System;
-using DesignPatterns.ChainOfResponsibility;
+using ClientChain = DesignPatterns.ChainOfResponsibility.Client;
 using DesignPatterns.Command;
 using DesignPatterns.Iterator;
 using DesignPatterns.Mediator;
 using DesignPatterns.Memento;
 using DesignPatterns.State;
+using DesignPatterns.Template;
+using Client = DesignPatterns.Template.Client;
+using DesignPatterns.ChainOfResponsibility;
 
 namespace DesignPatterns
 {
@@ -21,8 +24,21 @@ namespace DesignPatterns
             // Iterator();
             // Mediator();
             // Memento();
-            State();
+            // State();
+            Template();
            // Console.ReadLine();
+        }
+
+        private static void Template()
+        {
+            Console.WriteLine("Same client code can work with different subclasses:");
+
+            Client.ClientCode(new ConcreteClass1());
+
+            Console.Write("\n");
+
+            Console.WriteLine("Same client code can work with different subclasses:");
+            Client.ClientCode(new ConcreteClass2());
         }
 
         private static void State()
@@ -135,11 +151,11 @@ namespace DesignPatterns
             // The client should be able to send a request to any handler, not
             // just the first one in the chain.
             Console.WriteLine("Chain: Monkey > Squirrel > Dog\n");
-            Client.ClientCode(monkey);
+            ClientChain.ClientCode(monkey);
             Console.WriteLine();
 
             Console.WriteLine("Subchain: Squirrel > Dog\n");
-            Client.ClientCode(squirrel);
+            ClientChain.ClientCode(squirrel);
         }
 
         private static void Command()
