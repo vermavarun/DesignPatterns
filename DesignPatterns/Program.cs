@@ -3,6 +3,7 @@ using Startegy = DesignPatterns.Strategy;
 using System;
 using DesignPatterns.ChainOfResponsibility;
 using DesignPatterns.Command;
+using DesignPatterns.Iterator;
 
 namespace DesignPatterns
 {
@@ -13,11 +14,35 @@ namespace DesignPatterns
             // Strategy();
             // Observer();
             // ChainOfResponsibility();
-            Command();
+            // Command();
+            Iterator();
            // Console.ReadLine();
         }
 
-        
+        private static void Iterator()
+        {
+            var collection = new WordsCollection();
+            collection.AddItem("First");
+            collection.AddItem("Second");
+            collection.AddItem("Third");
+
+            Console.WriteLine("Straight traversal:");
+
+            foreach (var element in collection)
+            {
+                Console.WriteLine(element);
+            }
+
+            Console.WriteLine("\nReverse traversal:");
+
+            collection.ReverseDirection();
+
+            foreach (var element in collection)
+            {
+                Console.WriteLine(element);
+            }
+        }
+
         private static void Observer()
         {
             // The client code.
