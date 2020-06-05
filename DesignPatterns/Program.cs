@@ -10,6 +10,9 @@ using DesignPatterns.State;
 using DesignPatterns.Template;
 using Client = DesignPatterns.Template.Client;
 using DesignPatterns.ChainOfResponsibility;
+using DesignPatterns.Visitor;
+using ClientVisitor = DesignPatterns.Visitor.Client;
+using System.Collections.Generic;
 
 namespace DesignPatterns
 {
@@ -25,8 +28,28 @@ namespace DesignPatterns
             // Mediator();
             // Memento();
             // State();
-            Template();
+            // Template();
+            Visitor();
            // Console.ReadLine();
+        }
+
+        private static void Visitor()
+        {
+            List<IComponent> components = new List<IComponent>
+            {
+                new ConcreteComponentA(),
+                new ConcreteComponentB()
+            };
+
+            Console.WriteLine("The client code works with all visitors via the base Visitor interface:");
+            var visitor1 = new ConcreteVisitor1();
+            ClientVisitor.ClientCode(components, visitor1);
+
+            Console.WriteLine();
+
+            Console.WriteLine("It allows the same client code to work with different types of visitors:");
+            var visitor2 = new ConcreteVisitor2();
+            ClientVisitor.ClientCode(components, visitor2);
         }
 
         private static void Template()
