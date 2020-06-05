@@ -13,6 +13,7 @@ using DesignPatterns.ChainOfResponsibility;
 using DesignPatterns.Visitor;
 using ClientVisitor = DesignPatterns.Visitor.Client;
 using System.Collections.Generic;
+using DesignPatterns.Adaptor;
 
 namespace DesignPatterns
 {
@@ -29,8 +30,20 @@ namespace DesignPatterns
             // Memento();
             // State();
             // Template();
-            Visitor();
+            // Visitor();
+            Adaptor();
            // Console.ReadLine();
+        }
+
+        private static void Adaptor()
+        {
+            Adaptee adaptee = new Adaptee();
+            ITarget target = new Adapter(adaptee);
+
+            Console.WriteLine("Adaptee interface is incompatible with the client.");
+            Console.WriteLine("But with adapter client can call it's method.");
+
+            Console.WriteLine(target.GetRequest());
         }
 
         private static void Visitor()
