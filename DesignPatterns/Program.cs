@@ -6,6 +6,7 @@ using DesignPatterns.Command;
 using DesignPatterns.Iterator;
 using DesignPatterns.Mediator;
 using DesignPatterns.Memento;
+using DesignPatterns.State;
 
 namespace DesignPatterns
 {
@@ -19,8 +20,16 @@ namespace DesignPatterns
             // Command();
             // Iterator();
             // Mediator();
-            Memento();
+            // Memento();
+            State();
            // Console.ReadLine();
+        }
+
+        private static void State()
+        {
+            var context = new Context(new ConcreteStateA());
+            context.Request1();
+            context.Request2();
         }
 
         private static void Memento()
@@ -132,6 +141,7 @@ namespace DesignPatterns
             Console.WriteLine("Subchain: Squirrel > Dog\n");
             Client.ClientCode(squirrel);
         }
+
         private static void Command()
         {
             Invoker invoker = new Invoker();
