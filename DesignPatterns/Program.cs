@@ -21,6 +21,7 @@ using CompositeClass = DesignPatterns.Composite.Composite;
 using ClientComposite = DesignPatterns.Composite.Client;
 using DesignPatterns.Decorator;
 using DesignPatterns.Facade;
+using DesignPatterns.Proxy;
 
 namespace DesignPatterns
 {
@@ -42,8 +43,24 @@ namespace DesignPatterns
             // Bridge();
             // Composite();
             // Decorator();
-            Facade();
+            // Facade();
+            Proxy();
            // Console.ReadLine();
+        }
+
+        private static void Proxy()
+        {
+            ClientProxy client = new ClientProxy();
+
+            Console.WriteLine("Client: Executing the client code with a real subject:");
+            RealSubject realSubject = new RealSubject();
+            client.ClientCode(realSubject);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Client: Executing the same client code with a proxy:");
+            DesignPatterns.Proxy.Proxy proxy = new DesignPatterns.Proxy.Proxy(realSubject);
+            client.ClientCode(proxy);
         }
 
         private static void Facade()
