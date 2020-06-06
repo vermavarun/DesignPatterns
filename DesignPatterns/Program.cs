@@ -22,6 +22,8 @@ using ClientComposite = DesignPatterns.Composite.Client;
 using DesignPatterns.Decorator;
 using DesignPatterns.Facade;
 using DesignPatterns.Proxy;
+using DesignPatterns.Factory;
+using DesignPatterns.AbstractFactory;
 
 namespace DesignPatterns
 {
@@ -44,8 +46,20 @@ namespace DesignPatterns
             // Composite();
             // Decorator();
             // Facade();
-            Proxy();
+            // Proxy();
+            // Factory();
+            AbstractFactory();
            // Console.ReadLine();
+        }
+
+        private static void AbstractFactory()
+        {
+            new ClientAbFactory().Main();
+        }
+
+        private static void Factory()
+        {
+            new ClientFactory().Main();
         }
 
         private static void Proxy()
