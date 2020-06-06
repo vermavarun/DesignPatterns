@@ -20,6 +20,7 @@ using DesignPatterns.Composite;
 using CompositeClass = DesignPatterns.Composite.Composite;
 using ClientComposite = DesignPatterns.Composite.Client;
 using DesignPatterns.Decorator;
+using DesignPatterns.Facade;
 
 namespace DesignPatterns
 {
@@ -40,8 +41,21 @@ namespace DesignPatterns
             // Adaptor();
             // Bridge();
             // Composite();
-            Decorator();
+            // Decorator();
+            Facade();
            // Console.ReadLine();
+        }
+
+        private static void Facade()
+        {
+            // The client code may have some of the subsystem's objects already
+            // created. In this case, it might be worthwhile to initialize the
+            // Facade with these objects instead of letting the Facade create
+            // new instances.
+            Subsystem1 subsystem1 = new Subsystem1();
+            Subsystem2 subsystem2 = new Subsystem2();
+            DesignPatterns.Facade.Facade facade = new DesignPatterns.Facade.Facade(subsystem1, subsystem2);
+            ClientFacade.ClientCode(facade);
         }
 
         private static void Decorator()
