@@ -14,6 +14,8 @@ using DesignPatterns.Visitor;
 using ClientVisitor = DesignPatterns.Visitor.Client;
 using System.Collections.Generic;
 using DesignPatterns.Adaptor;
+using DesignPatterns.Bridge;
+using ClientBridge = DesignPatterns.Bridge.Client;
 
 namespace DesignPatterns
 {
@@ -31,8 +33,25 @@ namespace DesignPatterns
             // State();
             // Template();
             // Visitor();
-            Adaptor();
+            // Adaptor();
+            Bridge();
            // Console.ReadLine();
+        }
+
+        private static void Bridge()
+        {
+            ClientBridge client = new ClientBridge();
+
+            Abstraction abstraction;
+            // The client code should be able to work with any pre-configured
+            // abstraction-implementation combination.
+            abstraction = new Abstraction(new ConcreteImplementationA());
+            client.ClientCode(abstraction);
+
+            Console.WriteLine();
+
+            abstraction = new ExtendedAbstraction(new ConcreteImplementationB());
+            client.ClientCode(abstraction);
         }
 
         private static void Adaptor()
