@@ -19,6 +19,7 @@ using ClientBridge = DesignPatterns.Bridge.Client;
 using DesignPatterns.Composite;
 using CompositeClass = DesignPatterns.Composite.Composite;
 using ClientComposite = DesignPatterns.Composite.Client;
+using DesignPatterns.Decorator;
 
 namespace DesignPatterns
 {
@@ -38,8 +39,28 @@ namespace DesignPatterns
             // Visitor();
             // Adaptor();
             // Bridge();
-            Composite();
+            // Composite();
+            Decorator();
            // Console.ReadLine();
+        }
+
+        private static void Decorator()
+        {
+            ClientDecorator client = new ClientDecorator();
+
+            var simple = new ConcreteComponent();
+            Console.WriteLine("Client: I get a simple component:");
+            client.ClientCode(simple);
+            Console.WriteLine();
+
+            // ...as well as decorated ones.
+            //
+            // Note how decorators can wrap not only simple components but the
+            // other decorators as well.
+            ConcreteDecoratorA decorator1 = new ConcreteDecoratorA(simple);
+            ConcreteDecoratorB decorator2 = new ConcreteDecoratorB(decorator1);
+            Console.WriteLine("Client: Now I've got a decorated component:");
+            client.ClientCode(decorator2);
         }
 
         private static void Composite()
