@@ -26,6 +26,7 @@ using DesignPatterns.Factory;
 using DesignPatterns.AbstractFactory;
 using DesignPatterns.Builder;
 using DesignPatterns.Prototype;
+using DesignPatterns.Singleton;
 
 namespace DesignPatterns
 {
@@ -52,8 +53,25 @@ namespace DesignPatterns
             // Factory();
             // AbstractFactory();
             // Builder();
-            Prototype();
+            // Prototype();
+            Singleton();
            // Console.ReadLine();
+        }
+
+        private static void Singleton()
+        {
+            // The client code.
+            DesignPatterns.Singleton.Singleton s1 = DesignPatterns.Singleton.Singleton.GetInstance();
+            DesignPatterns.Singleton.Singleton s2 = DesignPatterns.Singleton.Singleton.GetInstance();
+
+            if (s1 == s2)
+            {
+                Console.WriteLine("Singleton works, both variables contain the same instance.");
+            }
+            else
+            {
+                Console.WriteLine("Singleton failed, variables contain different instances.");
+            }
         }
 
         private static void Prototype()
